@@ -1,18 +1,21 @@
+import java.util.Arrays;
+
 class Solution {
     public boolean reorderedPowerOf2(int n) {
-        String target = sortDigits(n);
+        // Convert number to string and sort
+        char[] chars = String.valueOf(n).toCharArray();
+        Arrays.sort(chars);
+        String sortedN = new String(chars);
 
-        for(int i = 0; i < 31; i++){
-            int powerOfTwo = 1 << i;
-            if(sortDigits(powerOfTwo).equals(target)) return true;
+        // Check all powers of 2 up to the limit of int
+        for (int i = 1; i <= 1_000_000_000; i <<= 1) {
+            char[] powerChars = String.valueOf(i).toCharArray();
+            Arrays.sort(powerChars);
+            String sortedPower = new String(powerChars);
+            if (sortedN.equals(sortedPower)) {
+                return true;
+            }
         }
-
         return false;
-    }
-
-    public String sortDigits(int num){
-        char[] arr = String.valueOf(num).toCharArray();
-        Arrays.sort(arr);
-        return new String(arr);
     }
 }
