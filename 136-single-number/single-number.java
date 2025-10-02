@@ -1,19 +1,15 @@
-import java.util.HashMap;
-
 class Solution {
     public int singleNumber(int[] nums) {
-        HashMap<Integer, Integer> h = new HashMap<>();
-
-        for (int num : nums) {
-            h.put(num, h.getOrDefault(num, 0) + 1);
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+         map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
-
-        for (int key : h.keySet()) {
-            if (h.get(key) == 1) {
-                return key;
-            }
+     for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        if(entry.getValue()==1){
+            return entry.getKey();
         }
-
-        return -1; // In case no single number is found
+    //  System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+}
+return -1;
     }
 }
