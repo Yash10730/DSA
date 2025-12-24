@@ -1,21 +1,30 @@
-// User function Template for Java
 class Solution {
-    public void segregate0and1(int[] arr) {
-        int countZero = 0;
 
-        // Count the number of 0s
-        for (int num : arr) {
-            if (num == 0) countZero++;
-        }
+    void segregate0and1(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
 
-        // Fill first part with 0s
-        for (int i = 0; i < countZero; i++) {
-            arr[i] = 0;
-        }
+        while (left < right) {
 
-        // Fill the rest with 1s
-        for (int i = countZero; i < arr.length; i++) {
-            arr[i] = 1;
+            // move left while 0
+            while (left < right && arr[left] == 0) {
+                left++;
+            }
+
+            // move right while 1
+            while (left < right && arr[right] == 1) {
+                right--;
+            }
+
+            // swap when left=1 and right=0
+            if (left < right) {
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+
+                left++;
+                right--;
+            }
         }
     }
 }
