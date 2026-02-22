@@ -1,30 +1,22 @@
+// User function Template for Java
+
 class Solution {
-
     void segregate0and1(int[] arr) {
-        int left = 0;
-        int right = arr.length - 1;
-
-        while (left < right) {
-
-            // move left while 0
-            while (left < right && arr[left] == 0) {
-                left++;
+        // code here
+        int n=arr.length-1;
+        int countZero=0;
+        for(int i=0;i<=n;i++){
+            if(arr[i]==0){
+                countZero++;
             }
-
-            // move right while 1
-            while (left < right && arr[right] == 1) {
-                right--;
-            }
-
-            // swap when left=1 and right=0
-            if (left < right) {
-                int temp = arr[left];
-                arr[left] = arr[right];
-                arr[right] = temp;
-
-                left++;
-                right--;
-            }
+            
+        }
+      //  System.out.println(countZero);
+        for(int i=0;i<countZero;i++){
+            arr[i]=0;
+        }
+        for(int i=countZero;i<=n;i++){
+            arr[i]=1;
         }
     }
 }
